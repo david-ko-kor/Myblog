@@ -29,7 +29,8 @@ app.config['SECRET_KEY'] = 'goremi'
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATA')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DB_HOST'] = os.environ.get('GETJSON')
-cred = credentials.Certificate(app.config['DB_HOST'] )
+jsonFIle=os.environ.get('GETJSON')
+cred = credentials.Certificate(jsonFIle)
 
 initialize_app(cred, {
     'storageBucket':'photo-671df.appspot.com'
