@@ -19,13 +19,7 @@ from firebase_admin import credentials, initialize_app, storage
 from flask_cors import CORS,cross_origin
 load_dotenv()
 
-# jsonFile = os.environ.get('GETJSON')
-cred = credentials.Certificate(GETJSON)
-initialize_app(cred, {
-    'storageBucket':'photo-671df.appspot.com'
-                       
-})
-bucket = storage.bucket()
+
 app = Flask(__name__)
 CORS(app)
 
@@ -34,7 +28,14 @@ CORS(app)
 app.config['SECRET_KEY'] = 'goremi'
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATA')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['DB_HOST'] = os.environ.get('GETJSON')
+cred = credentials.Certificate(os.environ.get('GETJSON'))
 
+initialize_app(cred, {
+    'storageBucket':'photo-671df.appspot.com'
+                       
+})
+bucket = storage.bucket()
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 class Photo(db.Model):
