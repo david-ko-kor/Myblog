@@ -16,28 +16,16 @@ import os
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 from firebase_admin import credentials, initialize_app, storage
-from google.cloud  import storage as google_cloud_storage
 from flask_cors import CORS,cross_origin
 load_dotenv()
 
 jsonFile = os.environ.get('GETJSON')
-client = google_cloud_storage.Client.from_service_account_json(jsonFile)
 cred = credentials.Certificate(jsonFile)
 initialize_app(cred, {
     'storageBucket':'photo-671df.appspot.com'
                        
 })
 bucket = storage.bucket()
-# firebaseConfig={
-#     "apiKey": "AIzaSyCZngJi6Ju9CrfeG6k_bOWNAxMS1SgqFSs",
-#     "authDomain": "photo-671df.firebaseapp.com",
-#     "projectId": "photo-671df",
-#     "storageBucket": "photo-671df.appspot.com",
-#     "messagingSenderId": "205996933248",
-#     "appId": "1:205996933248:web:8615d19d5dbc3d1c502665"
-# }
-
-
 app = Flask(__name__)
 CORS(app)
 
