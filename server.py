@@ -19,8 +19,8 @@ from firebase_admin import credentials, initialize_app, storage
 from flask_cors import CORS,cross_origin
 load_dotenv()
 
-jsonFile = os.environ.get('GETJSON')
-cred = credentials.Certificate(jsonFile)
+# jsonFile = os.environ.get('GETJSON')
+cred = credentials.Certificate(GETJSON)
 initialize_app(cred, {
     'storageBucket':'photo-671df.appspot.com'
                        
