@@ -20,7 +20,7 @@ from google.cloud  import storage as google_cloud_storage
 from flask_cors import CORS,cross_origin
 
 client = google_cloud_storage.Client.from_service_account_json('/Users/goremi/Desktop/example_003/reactFlask3/flask-server/instance/photo-671df-e73910200e09.json')
-print(client)
+
 cred = credentials.Certificate('/Users/goremi/Desktop/example_003/reactFlask3/flask-server/instance/photo-671df-e73910200e09.json')
 initialize_app(cred, {
     'storageBucket':'photo-671df.appspot.com'
@@ -66,6 +66,7 @@ def main():
 @cross_origin()
 def home():
       photos= db.session.query(Photo).all()
+
       photo_list = [{'filename': photo.filename, 'url': photo.url} for photo in photos]
       return jsonify(photodata=photo_list)
 @app.route('/api',methods=['POST'])
