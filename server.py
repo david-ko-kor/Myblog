@@ -19,7 +19,10 @@ from firebase_admin import credentials, initialize_app, storage
 from google.cloud  import storage as google_cloud_storage
 from flask_cors import CORS,cross_origin
 
-client = google_cloud_storage.Client.from_service_account_json('/Users/goremi/Desktop/example_003/reactFlask3/flask-server/instance/photo-671df-e73910200e09.json')
+base_dir=os.path.abspath(os.path.dirname(__file__))
+jsonFile=os.path.join(base_dir,'/instance/photo-671df-e73910200e09.json')
+print('33333333',base_dir)
+client = google_cloud_storage.Client.from_service_account_json(jsonFile)
 
 cred = credentials.Certificate('/Users/goremi/Desktop/example_003/reactFlask3/flask-server/instance/photo-671df-e73910200e09.json')
 initialize_app(cred, {
@@ -39,7 +42,7 @@ bucket = storage.bucket()
 load_dotenv()
 app = Flask(__name__)
 CORS(app)
-basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+os.path.join(basedir, "instance/photo.db")
 app.config['SECRET_KEY'] = 'goremi'
