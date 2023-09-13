@@ -20,8 +20,9 @@ from google.cloud  import storage as google_cloud_storage
 from flask_cors import CORS,cross_origin
 
 base_dir=os.path.abspath(os.path.dirname(__file__))
-jsonFile=os.path.join(base_dir,'/instance/photo-671df-e73910200e09.json')
-print('33333333',base_dir)
+print(base_dir)
+jsonFile=os.path.join(base_dir,'instance/photo-671df-e73910200e09.json')
+print('33333333',jsonFile)
 client = google_cloud_storage.Client.from_service_account_json(jsonFile)
 
 cred = credentials.Certificate('/Users/goremi/Desktop/example_003/reactFlask3/flask-server/instance/photo-671df-e73910200e09.json')
