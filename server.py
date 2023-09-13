@@ -18,14 +18,11 @@ from flask_migrate import Migrate
 from firebase_admin import credentials, initialize_app, storage
 from google.cloud  import storage as google_cloud_storage
 from flask_cors import CORS,cross_origin
+load_dotenv()
 
-base_dir=os.path.abspath(os.path.dirname(__file__))
-print(base_dir)
-jsonFile=os.path.join(base_dir,'instance/photo-671df-e73910200e09.json')
-print('33333333',jsonFile)
+jsonFile = os.environ.get('GETJSON')
 client = google_cloud_storage.Client.from_service_account_json(jsonFile)
-
-cred = credentials.Certificate('/Users/goremi/Desktop/example_003/reactFlask3/flask-server/instance/photo-671df-e73910200e09.json')
+cred = credentials.Certificate(jsonFile)
 initialize_app(cred, {
     'storageBucket':'photo-671df.appspot.com'
                        
@@ -40,7 +37,7 @@ bucket = storage.bucket()
 #     "appId": "1:205996933248:web:8615d19d5dbc3d1c502665"
 # }
 
-load_dotenv()
+
 app = Flask(__name__)
 CORS(app)
 
